@@ -13,7 +13,7 @@ const Container = styled.div`
 
   @media (min-width: 64em) {
     width: 50%;
-    height: 70%;
+    height: 80%;
   }
 `;
 
@@ -93,6 +93,12 @@ const Form__BackButton = styled(Form__Button)`
   }
 `;
 
+const Form__Info = styled.span`
+  color: #15c5e8;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
 const Styled = {
   Container,
   Container__Title,
@@ -103,6 +109,7 @@ const Styled = {
   Form__ButtonsGroup,
   Form__Button,
   Form__BackButton,
+  Form__Info
 };
 
 export default Styled;

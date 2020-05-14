@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Styled from './style';
 import StepProggress from './StepProgress';
 
-const SignUp = () => {
+const SignUp = ({changeView}) => {
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
   const [positionValue, setPositionValue] = useState('');
@@ -12,6 +12,31 @@ const SignUp = () => {
   const [passwordValue, setPasswordValue] = useState('');
   const [repasswordValue, setRepasswordValue] = useState('');
   const [step, setStep] = useState(1);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch('http://localhost:3001/signup',{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        firstName: firstNameValue,
+        lastName: lastNameValue,
+        position: positionValue,
+        gender: genderValue,
+        email: emailValue,
+        login: loginValue,
+        password: passwordValue,
+        repassword: repasswordValue
+      })
+    });
+    const result = await res.json();
+    console.log(result);
+  }
 
   const checkFirstStep = (e) => {
     e.preventDefault();
@@ -76,6 +101,7 @@ const SignUp = () => {
             <Styled.Form__Button onClick={checkFirstStep}>
               Dalej
             </Styled.Form__Button>
+            <p>Masz konto? <Styled.Form__Info onClick={changeView}>Zaloguj się</Styled.Form__Info>.</p>
           </>
         );
         break;
@@ -140,9 +166,8 @@ const SignUp = () => {
               onChange={(e) => setPositionValue(e.target.value)}
             >
               <option value="" disabled></option>
-              <option value={'1'}>#1</option>
-              <option value={'2'}>#2</option>
-              <option value={'3'}>#3</option>
+              <option value={'user'}>User</option>
+              <option value={'admin'}>Admin</option>
             </Styled.Form__Input>
 
             <Styled.Form__ButtonsGroup>
@@ -163,7 +188,7 @@ const SignUp = () => {
     <Styled.Container>
       <Styled.Container__Title>Utwórz konto</Styled.Container__Title>
       <StepProggress step={step} />
-      <Styled.Form>{changeStep()}</Styled.Form>
+      <Styled.Form onSubmit={submitForm}>{changeStep()}</Styled.Form>
     </Styled.Container>
   );
 };
