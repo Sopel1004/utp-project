@@ -9,7 +9,7 @@ const Users = () => {
         useEffect(() => {
             try{
                 const fetchData = async () => {
-                    const res = await fetch('http://localhost:3001/users');
+                    const res = await fetch('https://rest-api-utp.herokuapp.com/users');
                     const result = await res.json();
                     setUsers(result.users);
                 }

@@ -36,7 +36,7 @@ const UserDashboard = ({user}) => {
         e.preventDefault();
     
         if(selectedEvent !== null){
-            const res = await fetch('http://localhost:3001/addParticipant',{
+            const res = await fetch('https://rest-api-utp.herokuapp.com/addParticipant',{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

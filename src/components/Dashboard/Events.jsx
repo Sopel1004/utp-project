@@ -9,7 +9,7 @@ const Events = () => {
     useEffect(() => {
         try{
             const fetchData = async () => {
-                const res = await fetch('http://localhost:3001/events');
+                const res = await fetch('https://rest-api-utp.herokuapp.com/events');
                 const result = await res.json();
                 setEvents(result.events);
             }

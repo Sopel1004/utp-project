@@ -18,7 +18,7 @@ const SignIn = ({changeView, setIsLogged}) => {
 
     const submitForm = async (e) => {
         e.preventDefault();
-        const res = await fetch('http://localhost:3001/signin',{
+        const res = await fetch('https://rest-api-utp.herokuapp.com/signin',{
           method: 'POST',
           headers: {
             'Accept': 'application/json',

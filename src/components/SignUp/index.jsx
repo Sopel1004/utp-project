@@ -16,7 +16,7 @@ const SignUp = ({changeView}) => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:3001/signup',{
+    const res = await fetch('https://rest-api-utp.herokuapp.com/signup',{
       method: 'POST',
       headers: {
         'Accept': 'application/json',
